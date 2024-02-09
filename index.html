@@ -8,12 +8,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <div id="app">
+    <dialog class="delete-modal">
+      <div class="delete-modal__top">
+        <button class="delete-modal__delete-icon" disabled>
+          <i style="color: red" class="fa-solid fa-2xl fa-trash-can"></i>
+        </button>
+        <button class="delete-modal__close">
+          <i class="fa-solid fa-2xl fa-xmark"></i>
+        </button>
+      </div>
+      <p class="delete-modal__content">
+        Are you sure you want to permanently delete this tweet ?
+      </p>
+      <div class="delete-modal__bottom">
+        <button class="delete-modal__button-secondary">Cancel</button>
+        <button class="delete-modal__button-primary">Delete</button>
+      </div>
+    </dialog>
+    <div id="modal"></div>
+    <div id="root">
       <nav class="navigation flex justify-between items-center">
         <a href="#"
           ><img
@@ -26,95 +48,35 @@
             alt="Scaler Social Logo"
         /></a>
       </nav>
-      <main class="main">
-        <section class="post-tweet-section flex items-center justify-center">
-          <div class="dummy">
+      <main>
+        <section class="left">
+          <div class="wrapper">
             <h2 class="section-heading">Post your thoughts here</h2>
-            <div class="tweet-container">
-              <div class="tweet-container__tweet">
-                <div class="avatar">
-                  <img
-                    src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/031/original/profile_image.png?1706888739"
-                    alt="avatar"
-                  />
-                </div>
+            <div class="tweet-box">
+              <div class="tweet-box__top">
+                <img
+                  src="imageavatar.png"
+                  alt="avatar"
+                  class="tweet-box__avatar"
+                />
                 <textarea
-                  class="tweet-container__tweet-description"
                   placeholder="Type your thoughts here....."
+                  class="tweet-box__textarea"
                 ></textarea>
               </div>
-
-              <div class="tweet-container__post-tweet">
-                <div class="tweet-container__post-tweet-letter-count">
-                  <span
-                    class="tweet-container__post-tweet-letter-count--letters"
-                    >0</span
-                  >
-                  /
-                  <span
-                    class="tweet-container__post-tweet-letter-count--total-letters"
-                    >100</span
-                  >
-                </div>
-                <button class="btn-primary">Post</button>
+              <div class="tweet-box__bottom">
+                <p class="tweet-box__character-count">
+                  <span class="tweet-box__current-character-count">0</span> /
+                  <span class="tweet-box__max-character-count">100</span>
+                </p>
+                <button class="tweet-box__post-button btn-primary">Post</button>
               </div>
             </div>
           </div>
         </section>
-        <section class="feeds-section">
+        <section class="right">
           <h2 class="section-heading">Your Feed</h2>
-          <div class="one-feed">
-            <div class="feed-container">
-              <div class="feed">
-                <div class="feed__avatar">
-                  <img
-                    src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/031/original/profile_image.png?1706888739"
-                    alt="avatar"
-                  />
-                </div>
-                <div class="feed__content">
-                  <div class="feed__top-bar">
-                    <div class="flex">
-                      <h3 class="feed-heading">Joanne Graham</h3>
-                      <h4 class="feed-sub-heading">@joannegraham123</h4>
-                    </div>
-                    <div class="flex">
-                      <button class="edit">
-                        <img
-                          src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/028/original/edit.png?1706888661"
-                          alt="edit button"
-                        />
-                      </button>
-                      <button class="delete">
-                        <img
-                          src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/027/original/delete.png?1706888643"
-                          alt="delete button"
-                        />
-                      </button>
-                    </div>
-                  </div>
-                  <p class="feed__text">
-                    Inventore ducimus voluptas voluptatum id. Qui nihil
-                    cupiditate enim officia enim temporibus pariatur
-                  </p>
-                  <div class="feed__bottom-bar">
-                    <button class="message">
-                      <img
-                        src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/026/original/comment.png?1706888619"
-                        alt="message image"
-                      />
-                    </button>
-                    <button class="like">
-                      <img
-                        src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/029/original/heart.png?1706888679"
-                        alt="like image"
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="tweet-comments-container"></div>
         </section>
       </main>
     </div>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tweet component</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" crossorigin src="/assets/index-tpy4t1rB.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-I5u3Wyho.css">
+  </head>
+  <body>
+    <dialog class="delete-modal">
+      <div class="delete-modal__top">
+        <button class="delete-modal__delete-icon" disabled>
+          <i style="color: red" class="fa-solid fa-2xl fa-trash-can"></i>
+        </button>
+        <button class="delete-modal__close">
+          <i class="fa-solid fa-2xl fa-xmark"></i>
+        </button>
+      </div>
+      <p class="delete-modal__content">
+        Are you sure you want to permanently delete this tweet ?
+      </p>
+      <div class="delete-modal__bottom">
+        <button class="delete-modal__button-secondary">Cancel</button>
+        <button class="delete-modal__button-primary">Delete</button>
+      </div>
+    </dialog>
+    <div id="modal"></div>
+    <div id="root">
+      <nav class="navigation flex justify-between items-center">
+        <a href="#"
+          ><img
+            src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/033/original/SST_Logo.png?1706888781"
+            alt="SST Logo"
+        /></a>
+        <a href="#"
+          ><img
+            src="https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/064/032/original/scaler-social.png?1706888764"
+            alt="Scaler Social Logo"
+        /></a>
+      </nav>
+      <main>
+        <section class="left">
+          <div class="wrapper">
+            <h2 class="section-heading">Post your thoughts here</h2>
+            <div class="tweet-box">
+              <div class="tweet-box__top">
+                <img
+                  src="data:image/png;base64,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"
+                  alt="avatar"
+                  class="tweet-box__avatar"
+                />
+                <textarea
+                  placeholder="Type your thoughts here....."
+                  class="tweet-box__textarea"
+                ></textarea>
+              </div>
+              <div class="tweet-box__bottom">
+                <p class="tweet-box__character-count">
+                  <span class="tweet-box__current-character-count">0</span> /
+                  <span class="tweet-box__max-character-count">100</span>
+                </p>
+                <button class="tweet-box__post-button btn-primary">Post</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="right">
+          <h2 class="section-heading">Your Feed</h2>
+          <div class="tweet-comments-container"></div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
